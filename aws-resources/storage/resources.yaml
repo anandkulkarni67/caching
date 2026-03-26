@@ -35,10 +35,10 @@ Resources:
 
 Outputs:
   CustomerTable:
-    Description: "DynamoDB table arn"
+    Description: "DynamoDB table name"
     Export:
       Name: !Join [ '-', [ !Ref ApplicationName, 'customer-table']]
-    Value: !GetAtt CustomerTable.Arn
+    Value: !Ref CustomerTable
 
   CustomerTableCache:
     Description: "DynamoDB table accelerator endpoint"

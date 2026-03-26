@@ -26,6 +26,9 @@ Resources:
             };
           };
       Runtime: nodejs24.x
+      LoggingConfig:
+        LogFormat: JSON
+        LogGroup: !Ref APIFunctionLogGroup
       Environment:
         Variables:
           CUSTOMER_TABLE_CACHE_ENDPOINT:
@@ -36,6 +39,12 @@ Resources:
           ENVIRONMENT: 'aws'
       Timeout: 30
   
+  APIFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '${ApplicationName}-api-lambda'
+      RetentionInDays: 7
+
   ApiGatewayRestApi:
     Type: AWS::ApiGateway::RestApi
     Properties:
